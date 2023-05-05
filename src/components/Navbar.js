@@ -26,6 +26,9 @@ function Navigation() {
                 <Nav.Item>
                     <Nav.Link href="/Admin">Admin Panel</Nav.Link>
                 </Nav.Item>
+                 <Nav.Item>
+                    <Nav.Link href="/Login">Get Started</Nav.Link>
+                </Nav.Item>
             </Nav>
         </Navbar.Collapse>
       </Container>
