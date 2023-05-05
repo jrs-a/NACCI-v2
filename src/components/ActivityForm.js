@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const ActivityForm = () => {
-    const { dispatch } = useActivitiesContext()
+    const { dispatchActivity } = useActivitiesContext()
 
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
@@ -36,7 +36,7 @@ const ActivityForm = () => {
           setTitle('')
           setBody('')
           console.log('new activity added:', json)
-          dispatch({type: 'CREATE_ACTIVITY', payload: json})
+          dispatchActivity({type: 'CREATE_ACTIVITY', payload: json})
         }
       }
 

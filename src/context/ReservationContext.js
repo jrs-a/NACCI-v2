@@ -26,12 +26,12 @@ export const ReservationReducer = (state, action) => {
 }
 
 export const ReservationContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(ReservationReducer, {
+  const [state, dispatchReservation] = useReducer(ReservationReducer, {
     reservations: null
   })
 
   return (
-    <ReservationContext.Provider value={{ ...state, dispatch }}>
+    <ReservationContext.Provider value={{ ...state, dispatchReservation }}>
       {children}
     </ReservationContext.Provider>
   )

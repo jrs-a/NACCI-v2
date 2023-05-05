@@ -162,11 +162,11 @@ const About = () => {
                     <Container className="my-5 col d-flex justify-content-center">
                         <Card>
                             <Card.Body>
-                            <blockquote class="blockquote mb-0">
+                            <blockquote className="blockquote mb-0">
                                 <p>
                                     Our right, the Filipino right to water, to life, to agriculture, is not only constitutional. That’s God-given.
                                 </p>
-                                <footer class="blockquote-footer"> Gina Lopez</footer>
+                                <footer className="blockquote-footer"> Gina Lopez</footer>
                             </blockquote>
                             </Card.Body>
                         </Card>
@@ -176,11 +176,11 @@ const About = () => {
                     <Container className="my-5 col d-flex justify-content-center">
                         <Card>
                             <Card.Body>
-                            <blockquote class="blockquote mb-0">
+                            <blockquote className="blockquote mb-0">
                                 <p>
                                     Creation is prior to us and must be received as a gift. At the same time, we are called to protect our humanity, and this means, in the first place, accepting it and respecting it as it was created.”
                                 </p>
-                                <footer class="blockquote-footer">
+                                <footer className="blockquote-footer">
                                     Pope Francis <cite title="Source Title">
                                      on Laudato Si
                                     </cite>
@@ -194,11 +194,11 @@ const About = () => {
                     <Container className="my-5 col d-flex justify-content-center">
                         <Card>
                             <Card.Body>
-                            <blockquote class="blockquote mb-0">
+                            <blockquote className="blockquote mb-0">
                                 <p>
                                     The climate crisis is the greatest challenge humanity has ever faced. From not only the warming of the earth with higher global temperatures, but also from strengthening storms and expanding droughts to melting ice and rising seas, the costs of carbon pollution are already being felt by governments, corporations, taxpayers and families around the world. The climate crisis will affect everything that we love and alter the course of our future. Now, more than ever, we must come together to solve this global crisis. We must act decisively, rise to the occasion and solve this monumental challenge.
                                 </p>
-                                <footer class="blockquote-footer">
+                                <footer className="blockquote-footer">
                                     <a href="https://www.inspiringquotes.us/quotes/35KN_WCK7wElq"> Al Gore</a>
                                 </footer>
                             </blockquote>

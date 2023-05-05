@@ -1,35 +1,59 @@
 import { useEffect } from "react"
 import { useActivitiesContext } from "../hooks/useActivityContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 import ActivityForm from '../components/ActivityForm'
+import ReservationForm from '../components/ReservationForm'
 import ActivityDetails from '../components/ActivityDetails'
+import ReservationDetails from '../components/ReservationDetails'
 
-import Card from 'react-bootstrap/Card';
-import { Tab, Nav } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card'
+import { Tab, Nav } from 'react-bootstrap'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import ListGroup from 'react-bootstrap/ListGroup'
+import { useReservationContext } from "../hooks/useReservationContext"
 
 
 const Admin = () => {
-    const { activities, dispatch } = useActivitiesContext()
+    const { activities, dispatchActivity } = useActivitiesContext()
 
     useEffect(() => {
         const fetchActivities = async () => {
-            // const response = await fetch('/api/activities')
-            const response = await fetch('https://philecotourism.cyclic.app/api/activities')
-            console.log(response)
-            console.log('helo')
+            const response = await fetch('/api/activities')
             const json = await response.json()
 
             if (response.ok) {
-                dispatch({type: 'SET_ACTIVITY', payload: json})
+                dispatchActivity({type: 'SET_ACTIVITY', payload: json})
             }
         }
 
         fetchActivities()
-    }, [dispatch])
+    }, [dispatchActivity])
+
+
+    const { reservation, dispatchReservation } = useReservationContext()
+    const { user } = useAuthContext()
+
+    useEffect(() => {
+        const fetchReservation = async () => {
+            const response = await fetch('/api/reservations', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json()
+
+            if (response.ok) {
+                dispatchReservation({ type: 'SET_RESERVATION', payload: json })
+            }
+        }
+        
+        if (user) {
+            fetchReservation()
+        }
+    }, [dispatchReservation, user])
 
     return (
         <Container className='my-2'><Row><Col><Tab.Container id="inner-tabs" defaultActiveKey="first">
@@ -45,7 +69,7 @@ const Admin = () => {
                 <Tab.Pane eventKey="first">
                     <h1>Manage Activities</h1>
                     <Row className='py-4'>
-                        <Col md={false} lg={6} xl={5}>
+                        <Col md={false} lg={6} xl={5} className="mb-5">
                             <Card className='px-4 py-5'>
                                 <h3>Create a new Activity</h3>
                                 <Card.Body>
@@ -67,7 +91,20 @@ const Admin = () => {
                     </Row>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
-                <h1>Manage Reservations</h1>
+                    <h1>Manage Reservations</h1>
+                    <Row className='py-4'>
+                        <Col md={false} lg={6} xl={7}>
+                            <Card>
+                                <ListGroup variant="flush">
+                                    {reservation && reservation.map(reservation => (
+                                        <ListGroup.Item>
+                                            <ReservationDetails reservation={reservation} key={reservation._id}/>
+                                        </ListGroup.Item>
+                                    ))}
+                                </ListGroup>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Tab.Pane>
             </Tab.Content>
         </Tab.Container></Col></Row></Container>

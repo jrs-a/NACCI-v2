@@ -4,10 +4,15 @@ import { useAuthContext } from "../hooks/useAuthContext"
 
 // components
 import ReservationDetails from "../components/ReservationDetails"
-import ReservationForm from "../components/ReservationForm"
+import { Container, Tab } from "react-bootstrap"
+
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
 
 const Home = () => {
-    const { reservations, dispatch } = useReservationContext()
+    const { reservations, dispatchReservation } = useReservationContext()
     const { user } = useAuthContext()
 
     useEffect(() => {
@@ -20,24 +25,39 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok) {
-                dispatch({ type: 'SET_RESERVATION', payload: json })
+                dispatchReservation({ type: 'SET_RESERVATION', payload: json })
             }
         }
         
         if (user) {
             fetchReservation()
         }
-    }, [dispatch, user])
+    }, [dispatchReservation, user])
 
 
     return (
-        <div className="home">
-            <div className="reservations">
-                {reservations && reservations.map((reservations) => (
-                    <ReservationDetails key={reservations._id} reservations={reservations} />))}
-            </div>
-            <ReservationForm />
-        </div>
+        <Container><Row><Col>
+            <Tab.Container>
+                <Tab.Content>
+                    <Tab.Pane eventKey="second">
+                        <h1>Manage Reservations</h1>
+                        <Row className='py-4'>
+                            <Col md={false} lg={6} xl={7}>
+                                <Card>
+                                    <ListGroup variant="flush">
+                                        {   reservations && reservations.map((reservations) => (
+                                            <ListGroup.Item>
+                                                <ReservationDetails key={reservations._id} reservations={reservations} />
+                                            </ListGroup.Item>
+                                        ))}
+                                    </ListGroup>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Tab.Pane>
+                </Tab.Content>
+            </Tab.Container>
+        </Col></Row></Container>
     )
 }
 

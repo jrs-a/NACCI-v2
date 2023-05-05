@@ -50,3 +50,11 @@ div.error {
   height: 100vh;
   width: 100vw;
 }
+
+.shorttext {
+  overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical;
+}

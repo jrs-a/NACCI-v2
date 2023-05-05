@@ -10,12 +10,14 @@
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
+    "html-react-parser": "^3.0.16",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-html-map": "^0.1.1",
     "react-router-dom": "^6.11.0",
     "react-scripts": "5.0.1",
+    "react-truncate-markup": "^5.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

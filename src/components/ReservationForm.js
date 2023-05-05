@@ -2,8 +2,11 @@ import { useState } from 'react'
 import { useReservationContext } from '../hooks/useReservationContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 const ReservationForm = () => {
-  const { dispatch } = useReservationContext()
+  const { dispatchReservation } = useReservationContext()
   const { user } = useAuthContext()
   const [title, setTitle] = useState('')
   // const [date, setDate] = useState('')
@@ -48,61 +51,67 @@ const ReservationForm = () => {
       setStatus(true)
 
       console.log('new reservation added:', json)
-      dispatch({ type: 'CREATE_RESERVATION', payload: json })
+      dispatchReservation({ type: 'CREATE_RESERVATION', payload: json })
     }
 
   }
 
   return (
-    <form className="create" onSubmit={handleSubmit}>
-      <h3>Add a New Reservation</h3>
+    <Form className="create" onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formTitle">
+        <Form.Label>Reservation Name</Form.Label>
+        <Form.Control
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+          placeholder="Enter reservation name"
+        />
+      </Form.Group>
 
-      <label>Reservation Name:</label>
-      <input
-        type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-      />
+      <Form.Group className="mb-3" controlId="formLocation">
+        <Form.Label>Location</Form.Label>
+        <Form.Control
+          type="text"
+          onChange={(e) => setLocation(e.target.value)}
+          value={location}
+          placeholder="Enter location"
+        />
+      </Form.Group>
 
-      <label>location:</label>
-      <input
-        type="text"
-        onChange={(e) => setLocation(e.target.value)}
-        value={location}
-      />
+      <Form.Group className="mb-3" controlId="formNumParticipants">
+        <Form.Label>Number of Participants</Form.Label>
+        <Form.Control
+          type="number"
+          onChange={(e) => setParticipants(e.target.value)}
+          value={noOfParticipants}
+          placeholder="Enter number of participants"
+        />
+      </Form.Group>
 
-      <label>Number of Participants:</label>
-      <input
-        type="number"
-        onChange={(e) => setParticipants(e.target.value)}
-        value={noOfParticipants}
-      />
+      <Form.Group className="mb-3" controlId="formPointPerson">
+        <Form.Label>Point Person</Form.Label>
+        <Form.Control
+          type="text"
+          onChange={(e) => setPointPerson(e.target.value)}
+          value={pointPerson}
+          placeholder="Enter point person"
+        />
+      </Form.Group>
 
-{/* <     label>Date:</label>
-      <input
-        type="date"
-        onChange={(e) => setDate(e.target.value)}
-        value={date}
-      /> */}
+      <Form.Group className="mb-3" controlId="formContact">
+        <Form.Label>Contact</Form.Label>
+        <Form.Control
+          type="text"
+          onChange={(e) => setContact(e.target.value)}
+          value={contact}
+          placeholder="Enter contact information"
+        />
+      </Form.Group>
 
-
-      <label>Point Person:</label>
-      <input
-        type="text"
-        onChange={(e) => setPointPerson(e.target.value)}
-        value={pointPerson}
-      />
-
-      <label>Contact: </label>
-      <input
-        type="number"
-        onChange={(e) => setContact(e.target.value)}
-        value={contact}
-      />
-      
-      <button>Add Reservation</button>
-      {error && <div className="error">{error}</div>}
-    </form>
+      <Button variant="outline-success" type="submit" className="align-middle">
+        Submit
+      </Button>
+    </Form>
   )
 }
 
