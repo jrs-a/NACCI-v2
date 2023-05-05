@@ -86,7 +86,7 @@ const ActivityForm = () => {
             placeholder="Enter activity body" />
         </Form.Group>
 
-        <Button variant="outline-success" type="submit" class="align-middle">
+        <Button variant="outline-success" type="submit" className="align-middle">
           Create New Activity
         </Button>
         {error && <div className="error">{error}</div>}

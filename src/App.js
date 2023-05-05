@@ -1,6 +1,5 @@
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
-
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext'
 
@@ -16,6 +15,7 @@ import Auth from './pages/Auth'
 
 function App() {
   const { user } = useAuthContext()
+  
 
     //PAGES MUST BE REGISTERED HERE
   return (

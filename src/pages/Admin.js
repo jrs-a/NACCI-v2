@@ -17,7 +17,10 @@ const Admin = () => {
 
     useEffect(() => {
         const fetchActivities = async () => {
-            const response = await fetch('/api/activities')
+            // const response = await fetch('/api/activities')
+            const response = await fetch('https://philecotourism.cyclic.app/api/activities')
+            console.log(response)
+            console.log('helo')
             const json = await response.json()
 
             if (response.ok) {

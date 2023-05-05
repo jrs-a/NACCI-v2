@@ -1,5 +1,5 @@
 import { useActivitiesContext } from "../hooks/useActivityContext"
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+// import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { Button } from "react-bootstrap"
 
 import Stack from 'react-bootstrap/Stack'
@@ -25,7 +25,7 @@ const ActivityDetails = ({ activity }) => {
                 {/* <p>{activity.body}</p> */}
                 {/* <p>{formatDistanceToNow(new Date(activity.createdAt), { addSuffix: true})}</p> */}
                 <Button variant="outline-secondary" className="ms-auto">
-                    <span class="material-symbols-outlined align-middle">edit</span>
+                    <span className="material-symbols-outlined align-middle">edit</span>
                 </Button>
                 <Button variant="outline-danger">
                     <span className="material-symbols-outlined align-middle" onClick={handleClick}>delete</span>
